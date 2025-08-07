@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/dashboardstyle.css" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar-left">
+    <button class="dropbtn">Governance</button>
+
+    <div class="dropdown">
+      <button onclick="toggleDropdown()" class="dropbtn">Risk</button>
+      <div id="riskDropdown" class="dropdown-content">
+        <a href="#" onclick="showPlanRiskForm()">Plan Risk</a>
+        <a href="#">Plan Mitigation</a>
+        <a href="#">Review</a>
+      </div>
+    </div>
+
+    <button class="dropbtn">Compliance</button>
+    <button onclick="toggleConfigOptions()" class="dropbtn">Config</button>
+  </div>
+
+  <div class="navbar-right">
+    <span class="user-icon">👤</span>
+    <a href="/logout" class="logout-btn">Logout</a>
+  </div>
+</nav>
+
+<main class="dashboard-main">
+  <h1>Bine ai venit în Dashboard!</h1>
+
+  <!-- Config options hidden by default -->
+  <div id="config-options" class="config-section">
+    <button class="config-btn">Edit Account</button>
+    <button class="config-btn">Delete Account</button>
+  </div>
+
+  <!-- Plan Risk Form Section -->
+  <section id="plan-risk-form" class="form-section" style="display: none;">
+    <h2>Plan a New Risk</h2>
+    <form id="riskForm">
+      <label>Title:
+        <input type="text" name="title" required />
+      </label>
+
+      <label>Category:
+        <input type="text" name="category" required />
+      </label>
+
+      <label>Active:
+        <input type="text" name="active" required />
+      </label>
+
+      <label>Description:
+        <textarea name="description" required></textarea>
+      </label>
+
+      <label>Probability (1-5):
+        <input type="number" name="probability" min="1" max="5" required oninput="validateRange(this)" />
+      </label>
+
+      <label>Impact (1-5):
+        <input type="number" name="impact" min="1" max="5" required oninput="validateRange(this)" />
+      </label>
+
+      <label>Ease Exploite (1-5):
+        <input type="number" name="easeExploite" min="1" max="5" required oninput="validateRange(this)" />
+      </label>
+
+      <label>Status:
+        <input type="text" name="status" required />
+      </label>
+
+      <button type="submit">Submit Risk</button>
+    </form>
+  </section>
+</main>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>
